@@ -6,7 +6,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 100%;
             width: 100%;
             flex-direction: column;
         }
@@ -18,13 +18,14 @@
             flex-direction: column;
         }
         p {
-            font-size: 2vw;
+            font-size: 20px;
+            word-break: break-all;
         }
         label {
-            font-size: 2vw;
+            font-size: 20px;
         }
         button {
-            font-size: 2vw;
+            font-size: 20px;
             width: 10vw;
             height: 5vw;
         }
@@ -40,6 +41,7 @@
         <div class="parent-container">
             <div class="child-container">
                 <p>打卡时请按住屏幕保持光亮</p>
+                <p>如超过11组工作代号， 请复制生成出现的号码进入手机备忘录</p>
             </div>
             <div class="child-container">
                 <label for="phone-number">呼叫号码:</label>
@@ -58,6 +60,11 @@
             </div>
             <div class="child-container">
                 <button onclick="checkOut()">下班</button>
+            </div>
+            <div class="child-container">
+                <p>生成号码：</p>
+                <p id="generated-number"></p>
+                <button onclick="copyToClipboard()">复制号码</button>
             </div>
         </div>
         <script src="service.js"></script>

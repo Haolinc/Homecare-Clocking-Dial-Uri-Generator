@@ -1,11 +1,31 @@
 function checkIn(){
-    window.location.href = getFullOnClockUriCode()
+    const onClockUriCode = getFullOnClockUriCode()
+    const decodedUriCode = decodeURIComponent(onClockUriCode).substring(4)
+    document.getElementById("generated-number").innerHTML = decodedUriCode
+    window.location.href = onClockUriCode
     console.log(getFullOnClockUriCode())
 }
 
 function checkOut(){
-    window.location.href = getFullOffClockUriCode()
+    const offClockUriCode = getFullOffClockUriCode()
+    const decodedUriCode = decodeURIComponent(offClockUriCode).substring(4)
+    if (decodedUriCode.length < 100)
+        window.location.href = offClockUriCode
+    document.getElementById("generated-number").innerHTML = decodedUriCode
     console.log(getFullOffClockUriCode())
+}
+
+
+async function copyToClipboard(){
+    const generatedNumber = document.getElementById("generated-number").innerHTML
+    console.log(generatedNumber)
+    try {
+        await navigator.clipboard.writeText(generatedNumber);
+        alert("已复制生成号码!");
+    } catch (err) {
+        console.error("错误: ", err);
+        alert("复制生成号码失败。");
+  }
 }
 
 
