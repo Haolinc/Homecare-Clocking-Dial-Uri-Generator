@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://haolinc.github.io/Homecare-Clocking-Dial-Uri-Generator",
+  "homepage": "https://haolinc.github.io/Homecare-Clocking-Dial-Uri-Generator/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
