@@ -1,22 +1,20 @@
-function checkIn(){
+export function checkIn(){
     const onClockUriCode = getFullOnClockUriCode()
     const decodedUriCode = decodeURIComponent(onClockUriCode).substring(4)
-    document.getElementById("generated-number").innerHTML = decodedUriCode
     window.location.href = onClockUriCode
-    console.log(getFullOnClockUriCode())
+    return decodedUriCode
 }
 
-function checkOut(){
+export function checkOut(){
     const offClockUriCode = getFullOffClockUriCode()
     const decodedUriCode = decodeURIComponent(offClockUriCode).substring(4)
     if (decodedUriCode.length < 100)
         window.location.href = offClockUriCode
-    document.getElementById("generated-number").innerHTML = decodedUriCode
-    console.log(getFullOffClockUriCode())
+    return decodedUriCode
 }
 
 
-async function copyToClipboard(){
+export async function copyToClipboard(){
     const generatedNumber = document.getElementById("generated-number").innerHTML
     console.log(generatedNumber)
     try {
@@ -66,14 +64,14 @@ window.onload = function () {
     loadInput('work-number')
 }
 
-function loadInput(elementId){
+export function loadInput(elementId){
     const element = document.getElementById(elementId)
     const storageItem = localStorage.getItem(elementId)
     if (storageItem)
         element.value = storageItem
 }
 
-function saveInput(elementId){
+export function saveInput(elementId){
     const element = document.getElementById(elementId);
     localStorage.setItem(elementId, element.value)
 }
