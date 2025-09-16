@@ -1,7 +1,8 @@
+import FunctionalButton from "../common/FunctionalButton"
 import LabelText from "../common/LableText"
 
 export default function WorkInfo({workNumber, setWorkNum}){
-    const workNumberArr = workNumber.split(', ')
+    const workNumberArr = workNumber ? workNumber.split(', ') : []
 
     function setProperWorkNum(isSelected, targetWorkNum) {
         if (isSelected) {
@@ -47,6 +48,7 @@ export default function WorkInfo({workNumber, setWorkNum}){
                     )
                 })
             }
+            <FunctionalButton text='重置所有工作代号' onClickFunction={() => setWorkNum(null)}/>
         </>
     )
 }
