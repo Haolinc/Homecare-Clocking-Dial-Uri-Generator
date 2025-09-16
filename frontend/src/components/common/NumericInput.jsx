@@ -6,7 +6,7 @@ export default function NumericInput({id, maxLength, value, setValue}){
             id={id} 
             type="numericInput" 
             maxLength={maxLength} 
-            value = {value} 
+            value = {value ? value : ''} 
             onInput={(ele) => setValue(ele.target.value)}
         />
     )
