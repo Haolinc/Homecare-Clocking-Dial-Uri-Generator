@@ -10,15 +10,16 @@ function App() {
   const [workNumber, setWorkNum] = useState(localStorage.getItem('work-number'))
   const [isFirstPage, setIsFirstPage] = useState(true)
   const inputValues = [
-    {value: phoneNumber, setValue: setPhoneNumber},
-    {value: employeeNumber, setValue: setEmployeeNumber},
-    {value: workNumber, setValue: setWorkNum}
+    {value: phoneNumber ? phoneNumber: '', setValue: setPhoneNumber},
+    {value: employeeNumber ? employeeNumber: '', setValue: setEmployeeNumber},
+    {value: workNumber ? workNumber: '', setValue: setWorkNum}
   ]
+  console.log(typeof phoneNumber)
 
   useEffect(() => {
-    localStorage.setItem('phone-number', phoneNumber)
-    localStorage.setItem('employee-number', employeeNumber)
-    localStorage.setItem('work-number', workNumber)
+    localStorage.setItem('phone-number', phoneNumber ? phoneNumber : '')
+    localStorage.setItem('employee-number', employeeNumber ? employeeNumber : '')
+    localStorage.setItem('work-number', workNumber ? employeeNumber : '')
   }, [phoneNumber, employeeNumber, workNumber])
 
   return (

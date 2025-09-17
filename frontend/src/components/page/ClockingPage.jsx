@@ -7,7 +7,9 @@ import { useState } from 'react'
 export default function ClockingPage({inputValues}){
     const [phoneNumberObj, employeeNumberObj, workNumberObj] = inputValues
     const [generatedNumber, setGeneratedNumber] = useState(null)
-    
+    const [phoneNumber, employeeNumber, workNumber] = 
+        [phoneNumberObj.value, employeeNumberObj.value, workNumberObj.value]
+            .map(ele => ele === '' ? '空白' : ele)
     return (
         <>
             <div>
@@ -15,9 +17,9 @@ export default function ClockingPage({inputValues}){
             </div>
             <div>
                 <ClockingInfo
-                    phoneNumber={phoneNumberObj.value}
-                    employeeNumber={employeeNumberObj.value}
-                    workNumber={workNumberObj.value}
+                    phoneNumber={phoneNumber}
+                    employeeNumber={employeeNumber}
+                    workNumber={workNumber}
                 />
             </div>
             <div className='p-3'>
