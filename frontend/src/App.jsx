@@ -14,12 +14,11 @@ function App() {
     {value: employeeNumber ? employeeNumber: '', setValue: setEmployeeNumber},
     {value: workNumber ? workNumber: '', setValue: setWorkNum}
   ]
-  console.log(typeof phoneNumber)
 
   useEffect(() => {
     localStorage.setItem('phone-number', phoneNumber ? phoneNumber : '')
     localStorage.setItem('employee-number', employeeNumber ? employeeNumber : '')
-    localStorage.setItem('work-number', workNumber ? employeeNumber : '')
+    localStorage.setItem('work-number', workNumber ? workNumber : '')
   }, [phoneNumber, employeeNumber, workNumber])
 
   return (
