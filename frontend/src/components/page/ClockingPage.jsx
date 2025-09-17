@@ -1,4 +1,5 @@
 import ClockingButtons from "../clocking/ClockingButtons";
+import ClockingInfo from "../clocking/ClockingInfo";
 import NumberGenerateSection from "../clocking/NumberGenerate";
 import TopSectionText from "../clocking/TopSectionText";
 import { useState } from 'react'
@@ -12,6 +13,14 @@ export default function ClockingPage({inputValues}){
             <div>
                 <TopSectionText/>
             </div>
+            <div>
+                <ClockingInfo
+                    phoneNumber={phoneNumberObj.value}
+                    employeeNumber={employeeNumberObj.value}
+                    workNumber={workNumberObj.value}
+                />
+            </div>
+            <br/>
             <div>
                 <ClockingButtons 
                     phoneNumber={phoneNumberObj.value}
