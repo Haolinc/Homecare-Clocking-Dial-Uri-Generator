@@ -20,8 +20,7 @@ export default function ClockingPage({inputValues}){
                     workNumber={workNumberObj.value}
                 />
             </div>
-            <br/>
-            <div>
+            <div className='p-3'>
                 <ClockingButtons 
                     phoneNumber={phoneNumberObj.value}
                     employeeNumber={employeeNumberObj.value}

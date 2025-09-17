@@ -1,9 +1,12 @@
 export default function TopSectionText(){
-    const className = 'text-2xl p-3 underline'
+    const textClassName = 'text-lg text-red-500 font-bold'
     return (
         <>
-            <p className={className}>打卡时请按住屏幕保持光亮</p>
-            <p className={className}>如超过11组工作代号， 请复制生成出现的号码进入手机备忘录</p>
+            <div className='p-2'>
+                <p className={textClassName}>1. 打卡时请按住屏幕保持光亮</p>
+                <p className={textClassName}>2. 如超过11组工作代号， 请复制并储存生成出现的号码进入手机备忘录</p>
+            </div>
+            
         </>
     )
 }

@@ -15,7 +15,7 @@ export default function WorkInfo({workNumber, setWorkNum}){
     }
 
     function WorkNumButton({text, isSelected = false}){
-        const baseClassName = 'h-12 text-2xl text-center p3'
+        const baseClassName = 'h-12 w-24 text-2xl text-center p3'
         const className = isSelected ? baseClassName + ' bg-gradient-to-r from-blue-200 via-blue-200 to-gray-200': baseClassName
         return (
             <button 
@@ -34,21 +34,30 @@ export default function WorkInfo({workNumber, setWorkNum}){
     ]
 
     return (
-        <>
+        <div className='p-3'>
             <LabelText text={'工作代号'}/>
             {
                 workNumberList.map(workNumInfo => {
                     return (
                         <div key={workNumInfo.name}>
-                            <LabelText text={workNumInfo.name}/>
-                            {
-                                workNumInfo.numbers.map(number => <WorkNumButton key={number} text={number} isSelected={workNumberArr.includes(number)}/>)
-                            }
+                            <div className='p-3'>
+                                <LabelText text={workNumInfo.name}/>
+                            </div>
+                            <div className='w-full grid grid-cols-3 gap-4'>
+                                {
+                                    workNumInfo.numbers.map(number => 
+                                        <WorkNumButton key={number} text={number} isSelected={workNumberArr.includes(number)}/>
+                                    )
+                                }
+                            </div>
                         </div>
                     )
                 })
             }
-            <FunctionalButton text='重置所有工作代号' onClickFunction={() => setWorkNum(null)}/>
-        </>
+            <div className='p-5'>
+                <FunctionalButton text='重置所有工作代号' onClickFunction={() => setWorkNum(null)}/>
+            </div>
+            
+        </div>
     )
 }
