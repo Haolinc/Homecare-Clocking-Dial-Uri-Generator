@@ -1,3 +1,5 @@
+import { workNumberList } from "./data"
+
 export function checkIn(phoneNumber, employeeNumber){
     const onClockUriCode = getFullOnClockUriCode(phoneNumber, employeeNumber)
     const decodedUriCode = decodeURIComponent(onClockUriCode).substring(4)
@@ -24,6 +26,16 @@ export async function copyToClipboard(){
         console.error("错误: ", err);
         alert("复制生成号码失败。");
   }
+}
+
+export function validateWorkNumFromStorage(workNumber, setWorkNum){
+    const givenWorkNumArr = workNumberList.flatMap(item => item.numbers)
+    const validWorkNumber = workNumber
+                                .split(', ')
+                                .filter(number => givenWorkNumArr.includes(number))
+                                .sort((a, b) => a - b)
+                                .join(', ')
+    setWorkNum(validWorkNumber)
 }
 
 

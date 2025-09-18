@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import InfoPage from './components/page/InfoPage.jsx'
 import ClockingPage from './components/page/ClockingPage.jsx'
 import NavigationPanel from './components/NavigationPanel.jsx'
+import { validateWorkNumFromStorage } from './service.js'
 
 function App() {
   const [phoneNumber, setPhoneNumber] = useState(localStorage.getItem('phone-number'))
@@ -14,6 +15,10 @@ function App() {
     {value: employeeNumber ? employeeNumber: '', setValue: setEmployeeNumber},
     {value: workNumber ? workNumber: '', setValue: setWorkNum}
   ]
+
+  useEffect(() => {
+    validateWorkNumFromStorage(workNumber, setWorkNum)
+  }, [])
 
   useEffect(() => {
     localStorage.setItem('phone-number', phoneNumber ? phoneNumber : '')
