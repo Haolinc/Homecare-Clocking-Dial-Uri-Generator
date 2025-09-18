@@ -1,12 +1,14 @@
-export function checkIn(){
-    const onClockUriCode = getFullOnClockUriCode()
+import { workNumberList } from "./data"
+
+export function checkIn(phoneNumber, employeeNumber){
+    const onClockUriCode = getFullOnClockUriCode(phoneNumber, employeeNumber)
     const decodedUriCode = decodeURIComponent(onClockUriCode).substring(4)
     window.location.href = onClockUriCode
     return decodedUriCode
 }
 
-export function checkOut(){
-    const offClockUriCode = getFullOffClockUriCode()
+export function checkOut(phoneNumber, employeeNumber, workNumber){
+    const offClockUriCode = getFullOffClockUriCode(phoneNumber, employeeNumber, workNumber)
     const decodedUriCode = decodeURIComponent(offClockUriCode).substring(4)
     if (decodedUriCode.length < 100)
         window.location.href = offClockUriCode
@@ -16,7 +18,6 @@ export function checkOut(){
 
 export async function copyToClipboard(){
     const generatedNumber = document.getElementById("generated-number").innerHTML
-    console.log(generatedNumber)
     try {
         await navigator.clipboard.writeText(generatedNumber);
         alert("已复制生成号码!");
@@ -26,18 +27,23 @@ export async function copyToClipboard(){
   }
 }
 
+export function validateWorkNumFromStorage(workNumber, setWorkNum){
+    const givenWorkNumArr = workNumberList.flatMap(item => item.numbers)
+    const validWorkNumber = workNumber
+                                .split(', ')
+                                .filter(number => givenWorkNumArr.includes(number))
+                                .sort((a, b) => a - b)
+                                .join(', ')
+    setWorkNum(validWorkNumber)
+}
 
-function getFullOnClockUriCode() {
-    const phoneNumber = document.getElementById("phone-number").value
-    const employeeNumber = document.getElementById("employee-number").value
+
+function getFullOnClockUriCode(phoneNumber, employeeNumber) {
     return `tel:${phoneNumber}` + pause(8) + "1" + pause(4) + employeeNumber + pause(6) + "1"
 }
 
-function getFullOffClockUriCode() {
-    const workNumberStr = document.getElementById("work-number").value
-    const employeeNumber = document.getElementById("employee-number").value
-    const phoneNumber = document.getElementById("phone-number").value
-    return `tel:${phoneNumber}` + pause(8) + "2" + pause(4) + employeeNumber + pause(6) + "1" + pause(4) + processWorkNumString(workNumberStr)
+function getFullOffClockUriCode(phoneNumber, employeeNumber, workNumber) {
+    return `tel:${phoneNumber}` + pause(8) + "2" + pause(4) + employeeNumber + pause(6) + "1" + pause(4) + processWorkNumString(workNumber)
 }
 
 function pound() {
@@ -56,22 +62,4 @@ function pause(second) {
         result += ","
     }
     return encodeURIComponent(result)
-}
-
-window.onload = function () {
-    loadInput('phone-number')
-    loadInput('employee-number')
-    loadInput('work-number')
-}
-
-export function loadInput(elementId){
-    const element = document.getElementById(elementId)
-    const storageItem = localStorage.getItem(elementId)
-    if (storageItem)
-        element.value = storageItem
-}
-
-export function saveInput(elementId){
-    const element = document.getElementById(elementId);
-    localStorage.setItem(elementId, element.value)
 }

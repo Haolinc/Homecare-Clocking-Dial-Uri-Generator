@@ -1,46 +1,43 @@
 import './App.css'
-import TopSectionText from './components/TopSectionText'
-import FunctionalButton from './components/FunctionalButton.jsx'
-import { saveInput, checkIn, checkOut, copyToClipboard } from "./service.js"
-import LabelText from './components/LableText.jsx'
-import NumericInput from './components/NumericInput.jsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import InfoPage from './components/page/InfoPage.jsx'
+import ClockingPage from './components/page/ClockingPage.jsx'
+import NavigationPanel from './components/NavigationPanel.jsx'
+import { validateWorkNumFromStorage } from './service.js'
 
 function App() {
-  const [generatedNumber, setGeneratedNumber] = useState(null)
+  const [phoneNumber, setPhoneNumber] = useState(localStorage.getItem('phone-number'))
+  const [employeeNumber, setEmployeeNumber] = useState(localStorage.getItem('employee-number'))
+  const [workNumber, setWorkNum] = useState(localStorage.getItem('work-number'))
+  const [isFirstPage, setIsFirstPage] = useState(true)
+  const inputValues = [
+    {value: phoneNumber ? phoneNumber: '', setValue: setPhoneNumber},
+    {value: employeeNumber ? employeeNumber: '', setValue: setEmployeeNumber},
+    {value: workNumber ? workNumber: '', setValue: setWorkNum}
+  ]
+
+  useEffect(() => {
+    validateWorkNumFromStorage(workNumber ? workNumber : '', setWorkNum)
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('phone-number', phoneNumber ? phoneNumber : '')
+    localStorage.setItem('employee-number', employeeNumber ? employeeNumber : '')
+    localStorage.setItem('work-number', workNumber ? workNumber : '')
+  }, [phoneNumber, employeeNumber, workNumber])
+
   return (
     <>
-      <div >
-          <div>
-              <TopSectionText/>
-          </div>
-          <div>
-            <LabelText text='呼叫号码'/>
-            <NumericInput id='phone-number' maxLength='10'/>
-          </div>
-          <div>
-            <LabelText text='员工号码'/>
-            <NumericInput id='employee-number' maxLength='6'/>
-          </div>
-          <div>
-            <LabelText text='工作代号 (例子: 101, 102, 103):'/>
-              <textarea className='border border-solid p-1' rows="7" cols="50" id="work-number" name="work-number" onInput={() => saveInput('work-number')}></textarea>
-          </div>
-          <div>
-            <FunctionalButton text='上班' onClickFunction={() => { setGeneratedNumber(checkIn()) }}></FunctionalButton>
-          </div>
-          <div>
-            <FunctionalButton text='下班' onClickFunction={() => { setGeneratedNumber(checkOut()) }}></FunctionalButton>
-          </div>
-          { generatedNumber &&
-            <>
-              <div>
-              <LabelText text='生成号码'/>
-              <p className='p-2' id="generated-number">{generatedNumber}</p>
-              <FunctionalButton text='复制号码' onClickFunction={() => copyToClipboard()}></FunctionalButton>
-              </div>
-            </>
+      <div>
+        <div>
+          {
+            isFirstPage ?
+            <ClockingPage inputValues={inputValues}/>
+            : <InfoPage inputValues={inputValues}/>
           }
+        </div>
+        <div className='w-full h-20'/>
+        <NavigationPanel isFirstPage={isFirstPage} setIsFirstPage={setIsFirstPage}/>
       </div>
     </>
   )
