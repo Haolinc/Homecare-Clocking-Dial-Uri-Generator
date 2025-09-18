@@ -37,7 +37,7 @@ function App() {
           }
         </div>
         <div className='w-full h-20'/>
-        <NavigationPanel setIsFirstPage={setIsFirstPage}/>
+        <NavigationPanel isFirstPage={isFirstPage} setIsFirstPage={setIsFirstPage}/>
       </div>
     </>
   )
