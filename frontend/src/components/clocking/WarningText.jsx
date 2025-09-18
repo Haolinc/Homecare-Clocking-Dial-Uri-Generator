@@ -3,12 +3,12 @@ export default function WarningText({phoneNumber, employeeNumber, workNumber}){
     return (
         <>
             {
-                phoneNumber.length < 10 &&
-                <p className={className}>请输入至少10位数电话号码</p>
+                phoneNumber.length !== 10 &&
+                <p className={className}>请输入10位数电话号码</p>
             }
             {
-                employeeNumber.length < 6 &&
-                <p className={className}>请输入至少6位数员工代号</p>
+                employeeNumber.length !== 6 &&
+                <p className={className}>请输入6位数员工代号</p>
             }
             {
                 workNumber === '' &&

@@ -7,7 +7,7 @@ export default function ClockingInfo({phoneNumber, employeeNumber, workNumber}){
 
     function processPhoneNumber(phoneNumber){
         let processed = phoneNumber
-        if (phoneNumber.length >= 10)
+        if (phoneNumber.length === 10)
             processed = `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`
         return processed
     }
