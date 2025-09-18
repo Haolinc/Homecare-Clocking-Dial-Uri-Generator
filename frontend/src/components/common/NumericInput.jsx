@@ -4,9 +4,15 @@ export default function NumericInput({id, maxLength, value, setValue}){
         <input 
             className = {className} 
             id={id} 
-            type="numericInput" 
+            type="text"
+            inputMode="numeric"
             maxLength={maxLength} 
             value = {value ? value : ''} 
+            onBeforeInput={(e) => {
+                if (!/^[0-9]$/.test(e.data)) {
+                    e.preventDefault()
+                }
+            }}
             onInput={(ele) => setValue(ele.target.value)}
         />
     )
