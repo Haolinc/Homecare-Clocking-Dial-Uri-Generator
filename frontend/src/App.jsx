@@ -17,7 +17,7 @@ function App() {
   ]
 
   useEffect(() => {
-    validateWorkNumFromStorage(workNumber, setWorkNum)
+    validateWorkNumFromStorage(workNumber ? workNumber : '', setWorkNum)
   }, [])
 
   useEffect(() => {

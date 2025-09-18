@@ -3,13 +3,12 @@ import ClockingInfo from "../clocking/ClockingInfo";
 import NumberGenerateSection from "../clocking/NumberGenerate";
 import TopSectionText from "../clocking/TopSectionText";
 import { useState } from 'react'
+import WarningText from "../clocking/WarningText";
 
 export default function ClockingPage({inputValues}){
     const [phoneNumberObj, employeeNumberObj, workNumberObj] = inputValues
     const [generatedNumber, setGeneratedNumber] = useState(null)
-    const [phoneNumber, employeeNumber, workNumber] = 
-        [phoneNumberObj.value, employeeNumberObj.value, workNumberObj.value]
-            .map(ele => ele === '' ? '空白' : ele)
+    const [phoneNumber, employeeNumber, workNumber] = [phoneNumberObj.value, employeeNumberObj.value, workNumberObj.value]
     return (
         <>
             <div>
@@ -22,11 +21,18 @@ export default function ClockingPage({inputValues}){
                     workNumber={workNumber}
                 />
             </div>
+            <div className="p-3">
+                <WarningText
+                    phoneNumber={phoneNumber}
+                    employeeNumber={employeeNumber}
+                    workNumber={workNumber}
+                />
+            </div>
             <div className='p-3'>
                 <ClockingButtons 
-                    phoneNumber={phoneNumberObj.value}
-                    employeeNumber={employeeNumberObj.value}
-                    workNumber={workNumberObj.value}
+                    phoneNumber={phoneNumber}
+                    employeeNumber={employeeNumber}
+                    workNumber={workNumber}
                     setGeneratedNumber={setGeneratedNumber}
                 />
             </div>

@@ -1,0 +1,19 @@
+export default function WarningText({phoneNumber, employeeNumber, workNumber}){
+    const className = 'text-red-500 text-md'
+    return (
+        <>
+            {
+                phoneNumber.length < 10 &&
+                <p className={className}>请输入至少10位数电话号码</p>
+            }
+            {
+                employeeNumber.length < 6 &&
+                <p className={className}>请输入至少6位数员工代号</p>
+            }
+            {
+                workNumber === '' &&
+                <p className={className}>请选择至少1组工作代号</p>
+            }
+        </>
+    )
+}
