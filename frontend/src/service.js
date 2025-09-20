@@ -1,18 +1,19 @@
 import { workNumberList } from "./data"
 
-export function checkIn(phoneNumber, employeeNumber){
-    const onClockUriCode = getFullOnClockUriCode(phoneNumber, employeeNumber)
-    const decodedUriCode = decodeURIComponent(onClockUriCode).substring(4)
-    window.location.href = onClockUriCode
-    return decodedUriCode
+export function getCheckInUriCode(phoneNumber, employeeNumber){
+    const uriCode = getFullOnClockUriCode(phoneNumber, employeeNumber)
+    return {
+        decodedUriCode: decodeURIComponent(uriCode).substring(4), 
+        encodedUriCode: uriCode
+    }
 }
 
-export function checkOut(phoneNumber, employeeNumber, workNumber){
-    const offClockUriCode = getFullOffClockUriCode(phoneNumber, employeeNumber, workNumber)
-    const decodedUriCode = decodeURIComponent(offClockUriCode).substring(4)
-    if (decodedUriCode.length < 100)
-        window.location.href = offClockUriCode
-    return decodedUriCode
+export function getCheckOutUriCode(phoneNumber, employeeNumber, workNumber){
+    const uriCode = getFullOffClockUriCode(phoneNumber, employeeNumber, workNumber)
+    return {
+        decodedUriCode: decodeURIComponent(uriCode).substring(4), 
+        encodedUriCode: uriCode
+    }
 }
 
 
