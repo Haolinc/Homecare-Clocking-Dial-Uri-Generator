@@ -17,7 +17,8 @@ function App() {
   ]
 
   useEffect(() => {
-    validateWorkNumFromStorage(workNumber ? workNumber : '', setWorkNum)
+    const initialWorkNum = localStorage.getItem('work-number')
+    validateWorkNumFromStorage(initialWorkNum ? initialWorkNum : '', setWorkNum)
   }, [])
 
   useEffect(() => {
