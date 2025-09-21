@@ -48,7 +48,7 @@ export default function WorkInfo({workNumber, setWorkNum}){
                 })
             }
             <div className='pt-10'>
-                <FunctionalButton text='重置所有工作代号' onClickFunction={() => setWorkNum(null)}/>
+                <FunctionalButton text='重置所有工作代号' onClick={() => setWorkNum(null)}/>
             </div>
             
         </div>
