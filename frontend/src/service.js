@@ -17,8 +17,7 @@ export function getCheckOutUriCode(phoneNumber, employeeNumber, workNumber){
 }
 
 
-export async function copyToClipboard(){
-    const generatedNumber = document.getElementById("generated-number").innerHTML
+export async function copyToClipboard(generatedNumber){
     try {
         await navigator.clipboard.writeText(generatedNumber);
         alert("已复制生成号码!");

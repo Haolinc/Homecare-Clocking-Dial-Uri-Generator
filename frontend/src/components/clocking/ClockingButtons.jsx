@@ -19,10 +19,10 @@ export default function ClockingButtons({phoneNumber, employeeNumber, workNumber
     return (
         <>
             <div>
-                <FunctionalButton disabled={!isValid} text='上班' onClickFunction={() => checkIn()}></FunctionalButton>
+                <FunctionalButton disabled={!isValid} text='上班' onClick={() => checkIn()}></FunctionalButton>
             </div>
             <div>
-                <FunctionalButton disabled={!isValid} text='下班' onClickFunction={() => checkOut()}></FunctionalButton>
+                <FunctionalButton disabled={!isValid} text='下班' onClick={() => checkOut()}></FunctionalButton>
             </div>
         </>
     )
