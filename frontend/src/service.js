@@ -1,23 +1,23 @@
 import { workNumberList } from "./data"
 
-export function checkIn(phoneNumber, employeeNumber){
-    const onClockUriCode = getFullOnClockUriCode(phoneNumber, employeeNumber)
-    const decodedUriCode = decodeURIComponent(onClockUriCode).substring(4)
-    window.location.href = onClockUriCode
-    return decodedUriCode
+export function getCheckInUriCode(phoneNumber, employeeNumber){
+    const uriCode = getFullOnClockUriCode(phoneNumber, employeeNumber)
+    return {
+        decodedUriCode: decodeURIComponent(uriCode).substring(4), 
+        encodedUriCode: uriCode
+    }
 }
 
-export function checkOut(phoneNumber, employeeNumber, workNumber){
-    const offClockUriCode = getFullOffClockUriCode(phoneNumber, employeeNumber, workNumber)
-    const decodedUriCode = decodeURIComponent(offClockUriCode).substring(4)
-    if (decodedUriCode.length < 100)
-        window.location.href = offClockUriCode
-    return decodedUriCode
+export function getCheckOutUriCode(phoneNumber, employeeNumber, workNumber){
+    const uriCode = getFullOffClockUriCode(phoneNumber, employeeNumber, workNumber)
+    return {
+        decodedUriCode: decodeURIComponent(uriCode).substring(4), 
+        encodedUriCode: uriCode
+    }
 }
 
 
-export async function copyToClipboard(){
-    const generatedNumber = document.getElementById("generated-number").innerHTML
+export async function copyToClipboard(generatedNumber){
     try {
         await navigator.clipboard.writeText(generatedNumber);
         alert("已复制生成号码!");
@@ -27,14 +27,13 @@ export async function copyToClipboard(){
   }
 }
 
-export function validateWorkNumFromStorage(workNumber, setWorkNum){
+export function validateWorkNumFromStorage(oldWorkNumber){
     const givenWorkNumArr = workNumberList.flatMap(item => item.numbers)
-    const validWorkNumber = workNumber
-                                .split(', ')
-                                .filter(number => givenWorkNumArr.includes(number))
-                                .sort((a, b) => a - b)
-                                .join(', ')
-    setWorkNum(validWorkNumber)
+    return oldWorkNumber
+            .split(', ')
+            .filter((number, index, array) => givenWorkNumArr.includes(number) && array.indexOf(number) === index)
+            .sort((a, b) => a - b)
+            .join(', ')
 }
 
 
