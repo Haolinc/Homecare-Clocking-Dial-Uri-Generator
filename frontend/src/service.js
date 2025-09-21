@@ -27,14 +27,13 @@ export async function copyToClipboard(generatedNumber){
   }
 }
 
-export function validateWorkNumFromStorage(workNumber, setWorkNum){
+export function validateWorkNumFromStorage(oldWorkNumber){
     const givenWorkNumArr = workNumberList.flatMap(item => item.numbers)
-    const validWorkNumber = workNumber
-                                .split(', ')
-                                .filter(number => givenWorkNumArr.includes(number))
-                                .sort((a, b) => a - b)
-                                .join(', ')
-    setWorkNum(validWorkNumber)
+    return oldWorkNumber
+            .split(', ')
+            .filter((number, index, array) => givenWorkNumArr.includes(number) && array.indexOf(number) === index)
+            .sort((a, b) => a - b)
+            .join(', ')
 }
 
 

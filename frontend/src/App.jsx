@@ -18,7 +18,7 @@ function App() {
 
   useEffect(() => {
     const initialWorkNum = localStorage.getItem('work-number')
-    validateWorkNumFromStorage(initialWorkNum ? initialWorkNum : '', setWorkNum)
+    setWorkNum(validateWorkNumFromStorage(initialWorkNum ? initialWorkNum : ''))
   }, [])
 
   useEffect(() => {
