@@ -8,12 +8,9 @@ export default function NumericInput({id, maxLength, value, setValue}){
             inputMode="numeric"
             maxLength={maxLength} 
             value = {value ? value : ''} 
-            onBeforeInput={(e) => {
-                if (!/^[0-9]$/.test(e.data)) {
-                    e.preventDefault()
-                }
+            onChange={(e) => {
+                setValue(e.target.value.replace(/\D/g, ''))
             }}
-            onInput={(ele) => setValue(ele.target.value)}
         />
     )
 }
