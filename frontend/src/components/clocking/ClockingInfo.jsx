@@ -17,16 +17,16 @@ export default function ClockingInfo({phoneNumber, employeeNumber, workNumber}){
             <div className="w-full flex flex-row">
                 <div className={upperSectionClassName}>
                     <LabelText text='呼叫号码'/>
-                    <p className={textClassName}>{processedPhoneNumber === '' ? '空白' : processedPhoneNumber}</p>
+                    <p id='phone-number-text' className={textClassName}>{processedPhoneNumber === '' ? '空白' : processedPhoneNumber}</p>
                 </div>
                 <div className={upperSectionClassName}>
                     <LabelText text='员工号码'/>
-                    <p className={textClassName}>{employeeNumber === '' ? '空白' : employeeNumber}</p>
+                    <p id='employee-number-text' className={textClassName}>{employeeNumber === '' ? '空白' : employeeNumber}</p>
                 </div>
             </div>
             <div className="pb-2">
                 <LabelText text='工作项目代号'/>
-                <p className={textClassName}>{workNumber === '' ? '空白' : workNumber}</p>
+                <p id='work-number-text' className={textClassName}>{workNumber === '' ? '空白' : workNumber}</p>
             </div>
         </div>
     )
