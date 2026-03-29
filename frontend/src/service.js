@@ -38,11 +38,11 @@ export function validateWorkNumFromStorage(oldWorkNumber){
 
 
 function getFullOnClockUriCode(phoneNumber, employeeNumber) {
-    return `tel:${phoneNumber}` + pause(8) + "1" + pause(4) + employeeNumber + pause(6) + "1"
+    return `tel:${phoneNumber}` + pause(6) + "1" + pause(2) + employeeNumber + pause(6) + "1"
 }
 
 function getFullOffClockUriCode(phoneNumber, employeeNumber, workNumber) {
-    return `tel:${phoneNumber}` + pause(8) + "2" + pause(4) + employeeNumber + pause(6) + "1" + pause(4) + processWorkNumString(workNumber)
+    return `tel:${phoneNumber}` + pause(6) + "2" + pause(2) + employeeNumber + pause(6) + "1" + pause(4) + processWorkNumString(workNumber)
 }
 
 function pound() {

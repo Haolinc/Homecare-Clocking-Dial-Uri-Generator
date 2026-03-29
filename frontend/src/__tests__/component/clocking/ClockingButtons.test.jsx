@@ -81,10 +81,10 @@ describe("ClockingButtons Component tests", () => {
 
         checkInButton.click()
         
-        expect(mockSetGeneratedNumber).toBeCalledWith('1234567890,,,,1,,123456,,,1')
+        expect(mockSetGeneratedNumber).toBeCalledWith('1234567890,,,1,123456,,,1')
 
         checkOutButton.click()
 
-        expect(mockSetGeneratedNumber).toBeCalledWith('1234567890,,,,2,,123456,,,1,,101#,,102#,,000#')
+        expect(mockSetGeneratedNumber).toBeCalledWith('1234567890,,,2,123456,,,1,,101#,,102#,,000#')
     })
 })
