@@ -16,7 +16,7 @@ export default function WorkInfo({workNumber, setWorkNum}){
     }
 
     function WorkNumButton({text, isSelected = false}){
-        const baseClassName = 'h-12 w-24 text-2xl text-center p3'
+        const baseClassName = 'h-14 w-full text-2xl text-center'
         const className = isSelected ? baseClassName + ' bg-blue-400 text-white': baseClassName + ' bg-gray-200'
         return (
             <button 
@@ -36,7 +36,7 @@ export default function WorkInfo({workNumber, setWorkNum}){
                             <div className='p-3'>
                                 <LabelText text={workNumInfo.name}/>
                             </div>
-                            <div className='w-full grid grid-cols-3 gap-4'>
+                            <div className='w-full max-w-md mx-auto grid grid-cols-3 gap-3'>
                                 {
                                     workNumInfo.numbers.map(number => 
                                         <WorkNumButton key={number} text={number} isSelected={workNumberArr.includes(number)}/>
